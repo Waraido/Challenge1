@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>Encriptador</title>
+</head>
+<body>
+    <header>
+    </header>
+    <div style="text-align: center;">
+        <img src="/imagenes/logo2.png" style="margin-left: -10%;">
+         <p style="text-align: center; margin-left: 20%; margin-right: 30%;">Es momento de resolver este puzzle</p>
+    </div>
+    <main>
+        <section>
+            <textarea style="margin-left:40%;margin-right:50%; display: block;" class= "text-area" cols="20" rows="10" placeholder="Ingrese el texto aqui"></textarea>
+            <div>
+                <h6 style="text-align: center"; class="informacion"> Solo letras minúsculas y sin acentos</h6>
+            </div>
+            <div class="botones">
+                <button class="btn-encriptar">Encriptar</button>
+                <button class="btn-desencriptar">Desencriptar</button>
+            </div>
+        </section>
+        <section>
+            <textarea class= "mensaje" cols="20" rows="14,"></textarea>
+           <div>
+            <button class="copiar">Copiar</button>
+           </div>
+        </section>
+    </main>
+    </script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const textArea = document.querySelector(".text-area");
+    const mensaje = document.querySelector(".mensaje");
+    const btnEncriptar = document.querySelector(".btn-encriptar");
+    const btnDesencriptar = document.querySelector(".btn-desencriptar");
+    const btnCopiar = document.querySelector(".copiar");
+
+    // Función para validar caracteres
+    function validarTexto(texto) {
+        const regex = /^[a-z\s]+$/; // Solo permite letras minúsculas sin acentos ni caracteres especiales
+        return regex.test(texto);
+    }
+
+    function encriptarTexto(texto) {
+        let textoEncriptado = texto.replace(/e/g, "enter")
+                                   .replace(/i/g, "imes")
+                                   .replace(/a/g, "ai")
+                                   .replace(/o/g, "ober")
+                                   .replace(/u/g, "ufat");
+        return textoEncriptado;
+    }
+
+    function desencriptarTexto(texto) {
+        let textoDesencriptado = texto.replace(/enter/g, "e")
+                                      .replace(/imes/g, "i")
+                                      .replace(/ai/g, "a")
+                                      .replace(/ober/g, "o")
+                                      .replace(/ufat/g, "u");
+        return textoDesencriptado;
+    }
+
+    function limpiarTextArea() {
+        textArea.value = '';
+    }
+
+    btnEncriptar.addEventListener("click", () => {
+        const texto = textArea.value.toLowerCase();
+        if (validarTexto(texto)) {
+            const textoEncriptado = encriptarTexto(texto);
+            mensaje.value = textoEncriptado;
+            limpiarTextArea(); // Limpia el textarea después de encriptar
+        } else {
+            alert("El texto contiene caracteres no permitidos. Solo se permiten letras minúsculas sin acentos ni caracteres especiales.");
+        }
+    });
+
+    btnDesencriptar.addEventListener("click", () => {
+        const texto = textArea.value.toLowerCase();
+        if (validarTexto(texto)) {
+            const textoDesencriptado = desencriptarTexto(texto);
+            mensaje.value = textoDesencriptado;
+            limpiarTextArea(); // Limpia el textarea después de desencriptar
+        } else {
+            alert("El texto contiene caracteres no permitidos. Solo se permiten letras minúsculas sin acentos ni caracteres especiales.");
+        }
+    });
+
+    btnCopiar.addEventListener("click", () => {
+        mensaje.select();
+        document.execCommand("copy");
+        alert("Texto copiado al portapapeles");
+    });
+});
+</script>
+</body>
+</html>
+    </Script>
+</body>
+</html>
